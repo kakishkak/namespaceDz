@@ -1,20 +1,51 @@
-// namespaceDz.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include  <ctime>
+
+using namespace std;
+
+namespace carNomer1 {
+    class Auto {
+        int amountOfWheels;
+        int speed;
+    public:
+        Auto() {
+            amountOfWheels = 4;
+            speed = 69;
+        }
+        int getAmountOfWheels() {
+            return amountOfWheels;
+        }
+        int getSpeed() {
+            return speed;
+        }
+    };
+}
+
+namespace carNomer2 {
+    class Auto {
+        int amountOfWheels;
+        int speed;
+    public:
+        Auto() {
+            amountOfWheels = 10;
+            speed = 696;
+        }
+        Auto(carNomer1::Auto& obj) {
+            amountOfWheels = obj.getAmountOfWheels();
+            speed = obj.getSpeed();
+        }
+        void Printer() {
+            cout << "Speed: " << speed << "\nAmount of wheels: " << amountOfWheels << endl;
+        }
+    };
+}
+
+using namespace carNomer1;
+using namespace carNomer2;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    carNomer1::Auto obj = carNomer1::Auto();
+    carNomer2::Auto obj2 = carNomer2::Auto(obj);
+    obj2.Printer();
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
